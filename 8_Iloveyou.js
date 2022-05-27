@@ -1,8 +1,10 @@
 function howMuchILoveYou(nbPetals) {
-    // your code
+  const ARRAY = ['I love you','a little','a lot','passionately','madly','not at all'];
+  return (nbPetals % 6 == 0) ? ARRAY[ARRAY.length - 1] : ARRAY[nbPetals%6 - 1];
 }
 
-test1 = "I love you";
-test2 = "a lot";
-test3 = "not at all";
-console.log(test1);
+console.log(howMuchILoveYou(1));
+console.log(howMuchILoveYou(7));
+console.log(howMuchILoveYou(3));
+console.log(howMuchILoveYou(6));
+console.log(howMuchILoveYou(222));
