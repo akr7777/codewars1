@@ -7,3 +7,5 @@ function solution(str){
 console.log(solution("abcdefg"));// ["ab", "cd", "ef", "g_"]
 console.log(solution("abcdef"));//, ["ab", "cd", "ef"]
 console.log(solution(""));//, []
+
+//return (s+"_").match(/.{2}/g)||[]
