@@ -1,33 +1,29 @@
 function solution (data, replace) {
-  //Replace all values of "dynamic" with replace
-  //console.log("data=", data, 'length=', Object.keys(data).length);
+
+  /*
 
   if (data.hasOwnProperty("dynamic")) {
-      if (!data.hasOwnProperty("static")) {
-        let value = data['dynamic'];
-        delete data["dynamic"];
-        data["static"] = value;
-      } else {
-        data["static"] = data["dynamic"];
-        delete data["dynamic"];
+      if (!data.hasOwnProperty(replace)) {
+        //data[replace] = data['dynamic'];
+        //console.log('data1=',data);
+        //delete data["dynamic"];
       }
     }
-
-  console.log('data.length=', Object.keys(data).length, "typeof(data)=", typeof(data));
-  for (let i=0; i<Object.keys(data).length; i++){
-    console.log('data[i]=', data[i]);
-
-    if ( (Array.isArray(data[i]) || typeof(data[i]) == "object") && Object.keys(data[i]).length > 0) {
-      solution(data[i], replace)
-    }
-
-    console.log('data[i]=', data[i]);
-    if (data[i] == "dynamic") {
-
-      data[i] = "static";
+  */
+  if (Array.isArray(data) || typeof(data) == "object"){
+    if (Object.keys(data).length > 0) {  //Changing values
+      console.log('data=', data);
+      for ( let i=0; i<Object.keys(data).length; i++ ) {
+        let key = Object.keys(data)[i];
+        if ( (Array.isArray(data[key]) || typeof(data[key]) == "object") && Object.keys(data[key]).length > 0) {
+          solution(data[key], replace)
+        } else if (data[key] == "dynamic") {
+          //if VALUE == dinamic, then CHANGING this VALUE
+          data[key] = replace;
+        }
+      }
     }
   }
-
   return data;
 }
 
