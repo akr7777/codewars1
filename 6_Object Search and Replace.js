@@ -1,22 +1,13 @@
 function solution (data, replace) {
-
-  /*
-
-  if (data.hasOwnProperty("dynamic")) {
-      if (!data.hasOwnProperty(replace)) {
-        //data[replace] = data['dynamic'];
-        //console.log('data1=',data);
-        //delete data["dynamic"];
-      }
-    }
-  */
-  if (Array.isArray(data) || typeof(data) == "object"){
+  if ( isArrOrObj(data) ){
     if (Object.keys(data).length > 0) {  //Changing values
       console.log('data=', data);
       for ( let i=0; i<Object.keys(data).length; i++ ) {
         let key = Object.keys(data)[i];
-        if ( (Array.isArray(data[key]) || typeof(data[key]) == "object") && Object.keys(data[key]).length > 0) {
-          solution(data[key], replace)
+        if ( isArrOrObj(data[key]) ) {
+          if ( Object.keys(data[key]).length > 0 ) {
+            solution(data[key], replace);
+          }
         } else if (data[key] == "dynamic") {
           //if VALUE == dinamic, then CHANGING this VALUE
           data[key] = replace;
@@ -27,6 +18,9 @@ function solution (data, replace) {
   return data;
 }
 
+function isArrOrObj(var1) {
+  return (Array.isArray(var1) || ( typeof(var1) === "object" && typeof(var1) !== null && typeof(var1) !== undefined) );
+}
 
 //Some garbage data
 const data = {
@@ -34,9 +28,30 @@ const data = {
   bar: {
     baz: ["dynamic"]
   },
-  dynamic: true
+  //dynamic: true
+  123 : 123
 };
 
 //Your solution
 const result = solution(data, "static");
 console.log(result);
+
+/*
+function solution(data, replace) {
+  if (typeof data == 'object') {
+    for (var p in data) {
+      data[p] = solution(data[p], replace);
+    }
+  } else if (data == 'dynamic') {
+    return replace;
+  }
+
+  return data;
+}
+
+for(var key in data){
+    if(data[key]==="dynamic")data[key]=replace;
+    else if(typeof data[key]==='object')solution(data[key],replace);
+  }
+  return data;
+*/
