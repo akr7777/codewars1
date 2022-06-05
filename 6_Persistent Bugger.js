@@ -1,11 +1,9 @@
-let count = 0;
 function persistence(num) {
-  console.log('n=', num, 'c=', count);
-   if (num > 9) {
+   let count = 0;
+   while (num > 9) {
      count++;
-     persistence(num.toString().split('').reduce( (acc, cur) => cur*acc, 1 ));
+     num = num.toString().split('').reduce( (acc, cur) => cur*acc, 1 );
    }
-   console.log('count=',count);
    return count;
 }
 
